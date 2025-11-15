@@ -143,7 +143,7 @@ export default function EditBlog() {
                                 {isSubmitting ? "Updating..." : "Update Post"}
                             </button>
 
-                            <Link to="/dashboard" className="flex-1">
+                            <Link to="/userDashboard" className="flex-1">
                                 <button className="w-full bg-transparent border border-gray-300 rounded py-1 shadow-xs font-medium hover:bg-red text-sm hover:text-white transition-all duration-300">
                                     Cancel
                                 </button>

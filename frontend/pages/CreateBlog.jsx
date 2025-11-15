@@ -93,9 +93,6 @@ export default function CreateBlog() {
                                     onChange={setContent}
                                     placeholder="Write your content here. Use the formatting buttons above for styling."
                                 />
-                                <p className="text-xs text-gray-400">
-                                    Tip: Use the toolbar above to format your content.
-                                </p>
                             </div>
                         </div>
 
@@ -108,7 +105,7 @@ export default function CreateBlog() {
                                 {isSubmitting ? "Publishing..." : "Publish Post"}
                             </button>
 
-                            <Link to="/dashboard" className="flex-1">
+                            <Link to="/userDashboard" className="flex-1">
                                 <button className="w-full bg-transparent border border-gray-300 rounded py-1 shadow-xs font-medium hover:bg-red text-sm hover:text-white transition-all duration-300">
                                     Cancel
                                 </button>

@@ -45,7 +45,7 @@ export default function TextEditor({ value, onChange }) {
     return (
         <div className='space-y-2'>
             {/* ---------- Toolbar ---------- */}
-            {editor && (
+            {/* {editor && (
                 <div className="flex flex-wrap gap-2 p-2 border rounded-lg bg-gray-50">
 
                     <button onClick={() => editor.chain().focus().toggleBold().run()}>Bold</button>
@@ -77,7 +77,7 @@ export default function TextEditor({ value, onChange }) {
                         CodeBlock
                     </button>
                 </div>
-            )}
+            )} */}
 
             <div
                 className="border border-gray-300 rounded-lg min-h-[300px] p-4 cursor-text"
