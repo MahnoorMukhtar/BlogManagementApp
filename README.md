@@ -276,8 +276,7 @@ GET /api/posts/
             }
             "createdAt": "[timestamp]",
             "updatedAt": "[timestamp]"
-        },
-        [...more posts]
+        }
     ]
 }
 ```
