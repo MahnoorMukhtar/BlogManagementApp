@@ -45,9 +45,10 @@ cd frontend && npm install
 **Backend .env:**
 
 ```bash
-MONGO_URI=your_mongodb_connection_string
+MONGODB_URL=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 PORT=5000
+NODE_ENV = development
 ```
 
 **Frontend .env:**
