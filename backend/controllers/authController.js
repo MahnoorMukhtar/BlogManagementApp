@@ -37,7 +37,7 @@ const registerUser = async (req, res) => {
             secure: process.env.NODE_ENV == 'production',
             sameSite: "lax",
         });
-        res.status(201).json({ user:userCreated, token });
+        res.status(201).json({ succes: true, user:userCreated, token });
     } catch (error) {
         console.error("Error in registerUser:", error);
         res.status(500).json({ message: "Server error" });
@@ -76,7 +76,7 @@ const loginUser = async (req, res) => {
             secure: process.env.NODE_ENV == 'production',
             sameSite: "lax",
         });
-        res.status(200).json({ user: userCreated, token })
+        res.status(200).json({ success: true, user: userCreated, token })
     } catch (error) {
         console.error("Error in login in user:", error);
         res.status(500).json({ message: "Server error" });

@@ -151,14 +151,14 @@ Content-Type: application/json
 
 #### Register User
 \`\`\`http
-POST /api/auth/register
-Content-Type: application/json
+    POST /api/auth/register
+    Content-Type: application/json
 
-{
-  "name": "[User Name]",
-  "email": "[user@example.com]",
-  "password": "[password123]"
-}
+    {
+    "name": "[User Name]",
+    "email": "[user@example.com]",
+    "password": "[password123]"
+    }
 \`\`\`
 
 **Response (201):**
