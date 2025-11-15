@@ -162,7 +162,7 @@ Content-Type: application/json
 ```
 
 **Response (201):**
-\`\`\`json
+```json
     {
     "success": true,
     "token": "[jwt_token]",
@@ -172,11 +172,10 @@ Content-Type: application/json
         "email": "[user@example.com]"
     }
     }
-\`\`\`
+```
 
 #### Login User
-\`\`\`
-    http
+```http
     POST /api/auth/login
     Content-Type: application/json
 
@@ -184,10 +183,10 @@ Content-Type: application/json
     "email": "[user@example.com]",
     "password": "[password123]"
     }
-\`\`\`
+```
 
 **Response (200):**
-\`\`\`json
+```json
     {
     "success": true,
     "token": "[jwt_token]",
@@ -197,16 +196,16 @@ Content-Type: application/json
         "email": "[user@example.com]"
     }
     }
-\`\`\`
+```
 
 #### Get Current User
-\`\`\`http
+```http
     GET /api/auth/me
     Authorization: Bearer [jwt_token]
-\`\`\`
+```
 
 **Response (200):**
-\`\`\`json
+```json
     {
     "success": true,
     "user": {
@@ -216,12 +215,12 @@ Content-Type: application/json
         "createdAt": "[timestamp]"
     }
     }
-\`\`\`
+```
 
 ### CRUD Endpoints
 
 #### Create a Post
-\`\`\`http
+```http
     POST /api/[post]
     Authorization: Bearer [jwt_token]
     Content-Type: application/json
@@ -230,10 +229,10 @@ Content-Type: application/json
     "title": "[post Title]",
     "content": "[post content]",
 }
-\`\`\`
+```
 
 **Response (201):**
-\`\`\`json
+```json
     {
     "message": "New post created successfully",
     "post": {
@@ -249,15 +248,15 @@ Content-Type: application/json
         "updatedAt": "[timestamp]"
     }
     }
-\`\`\`
+```
 
 #### Get All Resources
-\`\`\`http
+```http
     GET /api/[post]
-\`\`\`
+```
 
 **Response (200):**
-\`\`\`json
+```json
     {
     "posts": [
         {
@@ -276,16 +275,16 @@ Content-Type: application/json
         }
     ]
     }
-\`\`\`
+```
 
 #### Get Post by ID
-\`\`\`http
+```http
     GET /api/[post]/[post._id]
     Authorization: Bearer [jwt_token]
-\`\`\`
+```
 
 **Response (200):**
-\`\`\`json
+```json
     {
     "post": {
         "_id": "[postId]",
@@ -295,10 +294,10 @@ Content-Type: application/json
         "updatedAt": "[timestamp]"
     }
     }
-\`\`\`
+```
 
 #### Update Post
-\`\`\`http
+```http
     PUT /api/[post]/[post_.id]
     Authorization: Bearer [jwt_token]
     Content-Type: application/json
@@ -307,10 +306,10 @@ Content-Type: application/json
     "title": "[Updated Title]",
     "content": "[Updated content]"
     }
-\`\`\`
+```
 
 **Response (200):**
-\`\`\`json
+```json
     {
     "message": "Post updated successfully",
     "data": {
@@ -321,21 +320,21 @@ Content-Type: application/json
         "createdAt": "[timestamp]",
     }
     }
-\`\`\`
+```
 
 #### Delete Post
-\`\`\`http
+```http
     DELETE /api/[post]/[post_id]
     Authorization: Bearer [jwt_token]
-\`\`\`
+```
 
 **Response (200):**
-\`\`\`json
+```json
     {
     "success": true,
     "message": "Post deleted successfully"
     }
-\`\`\`
+```
 
 ---
 
