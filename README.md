@@ -150,17 +150,16 @@ http://localhost:5000/api
 ### Authentication Endpoints
 
 #### Register User
-\`\`\`
-    http
-    POST /api/auth/register
-    Content-Type: application/json
+```http
+POST /api/auth/register
+Content-Type: application/json
 
-    {
-    "name": "[User Name]",
-    "email": "[user@example.com]",
-    "password": "[password123]"
-    }
-\`\`\`
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123"
+}
+```
 
 **Response (201):**
 \`\`\`json
