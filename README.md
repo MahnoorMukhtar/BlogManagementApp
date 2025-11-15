@@ -82,28 +82,34 @@ Then open http://localhost:5173 in your browser.
 
 ```
 Frontend (React)
+|   App
+|   index.css
 │
-├─ Components
-│   ├─ Header
+├─ components
 │   ├─ BlogCard
+│   ├─ Header
 │   └─ TextEditor (Tiptap)
-│   └─ TextEditor (Tiptap)
-│   └─ TextEditor (Tiptap)
+│   └─ ProtectedRoutes
 
 │
 ├─ Pages
 │   ├─ Home
 │   ├─ CreateBlog
 │   ├─ EditBlog
-│   └─ BlogDetail
+│   ├─ BlogDetail
+|   ├─ Blogs
+|   ├─ Login
+|   ├─ Register
+|   ├─ UserDashboard
+
 │
-└─ Context
+└─ context
     ├─ AuthContextProvider
     └─ BlogContextProvider
 
 Backend (Node.js + Express)
 │
-├─ Models
+├─ models
 │   └─ User, Post
 ├─ Controllers
 │   └─ AuthController, PostController
@@ -163,7 +169,7 @@ Content-Type: application/json
 
 **Response (201):**
 ```json
-    {
+{
     "success": true,
     "token": "[jwt_token]",
     "user": {
@@ -171,7 +177,7 @@ Content-Type: application/json
         "name": "[User Name]",
         "email": "[user@example.com]"
     }
-    }
+}
 ```
 
 #### Login User
@@ -180,14 +186,14 @@ POST /api/auth/login
 Content-Type: application/json
 
 {
-"email": "[user@example.com]",
-"password": "[password123]"
+    "email": "[user@example.com]",
+    "password": "[password123]"
 }
 ```
 
 **Response (200):**
 ```json
-    {
+{
     "success": true,
     "token": "[jwt_token]",
     "user": {
@@ -195,7 +201,7 @@ Content-Type: application/json
         "name": "[User Name]",
         "email": "[user@example.com]"
     }
-    }
+}
 ```
 
 #### Get Current User
@@ -206,7 +212,7 @@ Authorization: Bearer [jwt_token]
 
 **Response (200):**
 ```json
-    {
+{
     "success": true,
     "user": {
         "_id": "[user_id]",
@@ -214,7 +220,7 @@ Authorization: Bearer [jwt_token]
         "email": "[user@example.com]",
         "createdAt": "[timestamp]"
     }
-    }
+}
 ```
 
 ### CRUD Endpoints
@@ -226,14 +232,14 @@ Authorization: Bearer [jwt_token]
 Content-Type: application/json
 
 {
-"title": "[post Title]",
-"content": "[post content]",
+    "title": "[post Title]",
+    "content": "[post content]",
 }
 ```
 
 **Response (201):**
 ```json
-    {
+{
     "message": "New post created successfully",
     "post": {
         "_id": "[post._id]",
@@ -247,17 +253,17 @@ Content-Type: application/json
         "createdAt": "[timestamp]",
         "updatedAt": "[timestamp]"
     }
-    }
+}
 ```
 
 #### Get All Resources
 ```http
-GET /api/[post]
+GET /api/posts/
 ```
 
 **Response (200):**
 ```json
-    {
+{
     "posts": [
         {
             "_id": "[post._id]",
@@ -274,18 +280,18 @@ GET /api/[post]
             .
         }
     ]
-    }
+}
 ```
 
 #### Get Post by ID
 ```http
-GET /api/[post]/[post._id]
+GET /api/posts/[post._id]
 Authorization: Bearer [jwt_token]
 ```
 
 **Response (200):**
 ```json
-    {
+{
     "post": {
         "_id": "[postId]",
         "title": "[Post Title]",
@@ -293,24 +299,24 @@ Authorization: Bearer [jwt_token]
         "createdAt": "[timestamp]",
         "updatedAt": "[timestamp]"
     }
-    }
+}
 ```
 
 #### Update Post
 ```http
-PUT /api/[post]/[post_.id]
+PUT /api/posts/[post_.id]
 Authorization: Bearer [jwt_token]
 Content-Type: application/json
 
-    {
+{
     "title": "[Updated Title]",
     "content": "[Updated content]"
-    }
+}
 ```
 
 **Response (200):**
 ```json
-    {
+{
     "message": "Post updated successfully",
     "data": {
         "_id": "[post_id]",
@@ -319,7 +325,7 @@ Content-Type: application/json
         "updatedAt": "[timestamp]",
         "createdAt": "[timestamp]",
     }
-    }
+}
 ```
 
 #### Delete Post
@@ -330,10 +336,10 @@ Authorization: Bearer [jwt_token]
 
 **Response (200):**
 ```json
-    {
+{
     "success": true,
     "message": "Post deleted successfully"
-    }
+}
 ```
 
 ---
