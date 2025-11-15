@@ -122,14 +122,14 @@ Database
 ## API Documentation
 
 ### Base URL
-\`\`\`
+```bash
 http://localhost:5000/api
-\`\`\`
+```
 
 ### Authentication Headers
 \`\`\`
-Authorization: Bearer [JWT_TOKEN]
-Content-Type: application/json
+    Authorization: Bearer [JWT_TOKEN]
+    Content-Type: application/json
 \`\`\`
 
 ### Endpoints
@@ -150,7 +150,8 @@ Content-Type: application/json
 ### Authentication Endpoints
 
 #### Register User
-\`\`\`http
+\`\`\`
+    http
     POST /api/auth/register
     Content-Type: application/json
 
@@ -163,103 +164,80 @@ Content-Type: application/json
 
 **Response (201):**
 \`\`\`json
-{
-  "success": true,
-  "token": "[jwt_token]",
-  "user": {
-    "_id": "[user_id]",
-    "name": "[User Name]",
-    "email": "[user@example.com]"
-  }
-}
+    {
+    "success": true,
+    "token": "[jwt_token]",
+    "user": {
+        "_id": "[user_id]",
+        "name": "[User Name]",
+        "email": "[user@example.com]"
+    }
+    }
 \`\`\`
 
 #### Login User
-\`\`\`http
-POST /api/auth/login
-Content-Type: application/json
+\`\`\`
+    http
+    POST /api/auth/login
+    Content-Type: application/json
 
-{
-  "email": "[user@example.com]",
-  "password": "[password123]"
-}
+    {
+    "email": "[user@example.com]",
+    "password": "[password123]"
+    }
 \`\`\`
 
 **Response (200):**
 \`\`\`json
-{
-  "success": true,
-  "token": "[jwt_token]",
-  "user": {
-    "_id": "[user_id]",
-    "name": "[User Name]",
-    "email": "[user@example.com]"
-  }
-}
+    {
+    "success": true,
+    "token": "[jwt_token]",
+    "user": {
+        "_id": "[user_id]",
+        "name": "[User Name]",
+        "email": "[user@example.com]"
+    }
+    }
 \`\`\`
 
 #### Get Current User
 \`\`\`http
-GET /api/auth/me
-Authorization: Bearer [jwt_token]
+    GET /api/auth/me
+    Authorization: Bearer [jwt_token]
 \`\`\`
 
 **Response (200):**
 \`\`\`json
-{
-  "success": true,
-  "user": {
-    "_id": "[user_id]",
-    "name": "[User Name]",
-    "email": "[user@example.com]",
-    "createdAt": "[timestamp]"
-  }
-}
+    {
+    "success": true,
+    "user": {
+        "_id": "[user_id]",
+        "name": "[User Name]",
+        "email": "[user@example.com]",
+        "createdAt": "[timestamp]"
+    }
+    }
 \`\`\`
 
 ### CRUD Endpoints
 
 #### Create a Post
 \`\`\`http
-POST /api/[post]
-Authorization: Bearer [jwt_token]
-Content-Type: application/json
+    POST /api/[post]
+    Authorization: Bearer [jwt_token]
+    Content-Type: application/json
 
-{
-  "title": "[post Title]",
-  "content": "[post content]",
+    {
+    "title": "[post Title]",
+    "content": "[post content]",
 }
 \`\`\`
 
 **Response (201):**
 \`\`\`json
-{
-  "message": "New post created successfully",
-  "post": {
-    "_id": "[post._id]",
-    "title": "[post Title]",
-    "description": "[post content]",
-    "authorId": {
-        "_id": "64f0c7d2e7a1f23abc654321",
-        "name": "John Doe",
-        "email": "john@example.com"
-    }
-    "createdAt": "[timestamp]",
-    "updatedAt": "[timestamp]"
-  }
-}
-\`\`\`
-
-#### Get All Resources
-\`\`\`http
-GET /api/[post]
-\`\`\`
-
-**Response (200):**
-\`\`\`json
-{
-  "posts": [
     {
+    "message": "New post created successfully",
+    "post": {
         "_id": "[post._id]",
         "title": "[post Title]",
         "description": "[post content]",
@@ -270,70 +248,94 @@ GET /api/[post]
         }
         "createdAt": "[timestamp]",
         "updatedAt": "[timestamp]"
-    },{
-        ...
     }
-  ]
-}
+    }
+\`\`\`
+
+#### Get All Resources
+\`\`\`http
+    GET /api/[post]
+\`\`\`
+
+**Response (200):**
+\`\`\`json
+    {
+    "posts": [
+        {
+            "_id": "[post._id]",
+            "title": "[post Title]",
+            "description": "[post content]",
+            "authorId": {
+                "_id": "64f0c7d2e7a1f23abc654321",
+                "name": "John Doe",
+                "email": "john@example.com"
+            }
+            "createdAt": "[timestamp]",
+            "updatedAt": "[timestamp]"
+        },{
+            ...
+        }
+    ]
+    }
 \`\`\`
 
 #### Get Post by ID
 \`\`\`http
-GET /api/[post]/[post._id]
-Authorization: Bearer [jwt_token]
+    GET /api/[post]/[post._id]
+    Authorization: Bearer [jwt_token]
 \`\`\`
 
 **Response (200):**
 \`\`\`json
-{
-  "post": {
-    "_id": "[postId]",
-    "title": "[Post Title]",
-    "description": "[Post Content]",
-    "createdAt": "[timestamp]",
-    "updatedAt": "[timestamp]"
-  }
-}
+    {
+    "post": {
+        "_id": "[postId]",
+        "title": "[Post Title]",
+        "description": "[Post Content]",
+        "createdAt": "[timestamp]",
+        "updatedAt": "[timestamp]"
+    }
+    }
 \`\`\`
 
 #### Update Post
 \`\`\`http
-PUT /api/[post]/[post_.id]
-Authorization: Bearer [jwt_token]
-Content-Type: application/json
+    PUT /api/[post]/[post_.id]
+    Authorization: Bearer [jwt_token]
+    Content-Type: application/json
 
-{
-  "title": "[Updated Title]",
-  "content": "[Updated content]"
-}
+    {
+    "title": "[Updated Title]",
+    "content": "[Updated content]"
+    }
 \`\`\`
 
 **Response (200):**
 \`\`\`json
-{
-  "message": "Post updated successfully",
-  "data": {
-    "_id": "[post_id]",
-    "title": "[Updated Title]",
-    "content": "[Updated content]",
-    "updatedAt": "[timestamp]",
-    "createdAt": "[timestamp]",
-  }
-}
+    {
+    "message": "Post updated successfully",
+    "data": {
+        "_id": "[post_id]",
+        "title": "[Updated Title]",
+        "content": "[Updated content]",
+        "updatedAt": "[timestamp]",
+        "createdAt": "[timestamp]",
+    }
+    }
 \`\`\`
 
 #### Delete Post
 \`\`\`http
-DELETE /api/[post]/[post_id]
-Authorization: Bearer [jwt_token]
+    DELETE /api/[post]/[post_id]
+    Authorization: Bearer [jwt_token]
 \`\`\`
 
 **Response (200):**
 \`\`\`json
-{
-  "success": true,
-  "message": "Post deleted successfully"
-}
+    {
+    "success": true,
+    "message": "Post deleted successfully"
+    }
 \`\`\`
 
 ---
