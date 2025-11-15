@@ -133,10 +133,10 @@ http://localhost:5000/api
 ```
 
 ### Authentication Headers
-\`\`\`
+```
     Authorization: Bearer [JWT_TOKEN]
     Content-Type: application/json
-\`\`\`
+```
 
 ### Endpoints
 
@@ -227,7 +227,7 @@ Authorization: Bearer [jwt_token]
 
 #### Create a Post
 ```http
-POST /api/[post]
+POST /api/posts
 Authorization: Bearer [jwt_token]
 Content-Type: application/json
 
@@ -244,7 +244,7 @@ Content-Type: application/json
     "post": {
         "_id": "[post._id]",
         "title": "[post Title]",
-        "description": "[post content]",
+        "content": "[post content]",
         "authorId": {
             "_id": "64f0c7d2e7a1f23abc654321",
             "name": "John Doe",
@@ -268,7 +268,7 @@ GET /api/posts/
         {
             "_id": "[post._id]",
             "title": "[post Title]",
-            "description": "[post content]",
+            "content": "[post content]",
             "authorId": {
                 "_id": "64f0c7d2e7a1f23abc654321",
                 "name": "John Doe",
@@ -276,9 +276,8 @@ GET /api/posts/
             }
             "createdAt": "[timestamp]",
             "updatedAt": "[timestamp]"
-        },{
-            .
-        }
+        },
+        //...more posts
     ]
 }
 ```
@@ -295,7 +294,7 @@ Authorization: Bearer [jwt_token]
     "post": {
         "_id": "[postId]",
         "title": "[Post Title]",
-        "description": "[Post Content]",
+        "content": "[Post Content]",
         "createdAt": "[timestamp]",
         "updatedAt": "[timestamp]"
     }
@@ -330,7 +329,7 @@ Content-Type: application/json
 
 #### Delete Post
 ```http
-DELETE /api/[post]/[post_id]
+DELETE /api/posts/[post_id]
 Authorization: Bearer [jwt_token]
 ```
 
