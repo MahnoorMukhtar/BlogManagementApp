@@ -35,18 +35,9 @@ cd BlogManagementApp
 
 ### 2. Install dependencies
 
-**Backend:**
-
 ```bash
-git clone https://github.com/MahnoorMukhtar/BlogManagementApp.git
-cd BlogManagementApp
-```
-
-**Frontend:**
-
-```bash
-cd frontend
-npm install
+cd backend && npm install
+cd frontend && npm install
 ```
 
 ### 3. Confgiure Env Variables
@@ -83,6 +74,290 @@ npm run dev
 ```
 
 Then open http://localhost:5173 in your browser.
+
+
+## Architecture Explanation
+
+### Project Structure
+
+\`\`\`
+Frontend (React)
+│
+├─ Components
+│   ├─ Header
+│   ├─ BlogCard
+│   └─ TextEditor (Tiptap)
+│   └─ TextEditor (Tiptap)
+│   └─ TextEditor (Tiptap)
+
+│
+├─ Pages
+│   ├─ Home
+│   ├─ CreateBlog
+│   ├─ EditBlog
+│   └─ BlogDetail
+│
+└─ Context
+    ├─ AuthContextProvider
+    └─ BlogContextProvider
+
+Backend (Node.js + Express)
+│
+├─ Models
+│   └─ User, Post
+├─ Controllers
+│   └─ AuthController, PostController
+├─ Routes
+│   └─ auth.js, posts.js
+├─ Middleware
+│   └─ authMiddleware (JWT verification)
+└─ Server.js (App entry point)
+
+Database
+└─ MongoDB (Stores users and posts)
+\`\`\`
+
+---
+
+## API Documentation
+
+### Base URL
+\`\`\`
+http://localhost:5000/api
+\`\`\`
+
+### Authentication Headers
+\`\`\`
+Authorization: Bearer [JWT_TOKEN]
+Content-Type: application/json
+\`\`\`
+
+### Endpoints
+
+| Method | Endpoint | Description | Auth Required | Request Body |
+|--------|----------|-------------|---------------|--------------|
+| POST   | `/api/auth/register` | Register a new user | No | `{ name, email, password }` |
+| POST   | `/api/auth/login` | Login user | No | `{ email, password }` |
+| POST   | `/api/auth/logout` | Logout user | Yes | - |
+| GET    | `/api/auth/me` | Get current logged-in user | Yes | - |
+| POST   | `/api/posts` | Create a new blog post | Yes | `{ title, content }` |
+| GET    | `/api/posts` | Get all blog posts | No | - |
+| GET    | `/api/posts/:id` | Get a single blog post by ID | No | - |
+| PUT    | `/api/posts/:id` | Update a blog post | Yes | `{ title, content }` |
+| DELETE | `/api/posts/:id` | Delete a blog post | Yes | - |
+
+
+### Authentication Endpoints
+
+#### Register User
+\`\`\`http
+POST /api/auth/register
+Content-Type: application/json
+
+{
+  "name": "[User Name]",
+  "email": "[user@example.com]",
+  "password": "[password123]"
+}
+\`\`\`
+
+**Response (201):**
+\`\`\`json
+{
+  "success": true,
+  "token": "[jwt_token]",
+  "user": {
+    "_id": "[user_id]",
+    "name": "[User Name]",
+    "email": "[user@example.com]"
+  }
+}
+\`\`\`
+
+#### Login User
+\`\`\`http
+POST /api/auth/login
+Content-Type: application/json
+
+{
+  "email": "[user@example.com]",
+  "password": "[password123]"
+}
+\`\`\`
+
+**Response (200):**
+\`\`\`json
+{
+  "success": true,
+  "token": "[jwt_token]",
+  "user": {
+    "_id": "[user_id]",
+    "name": "[User Name]",
+    "email": "[user@example.com]"
+  }
+}
+\`\`\`
+
+#### Get Current User
+\`\`\`http
+GET /api/auth/me
+Authorization: Bearer [jwt_token]
+\`\`\`
+
+**Response (200):**
+\`\`\`json
+{
+  "success": true,
+  "user": {
+    "_id": "[user_id]",
+    "name": "[User Name]",
+    "email": "[user@example.com]",
+    "createdAt": "[timestamp]"
+  }
+}
+\`\`\`
+
+### CRUD Endpoints
+
+#### Create a Post
+\`\`\`http
+POST /api/[post]
+Authorization: Bearer [jwt_token]
+Content-Type: application/json
+
+{
+  "title": "[post Title]",
+  "content": "[post content]",
+}
+\`\`\`
+
+**Response (201):**
+\`\`\`json
+{
+  "message": "New post created successfully",
+  "post": {
+    "_id": "[post._id]",
+    "title": "[post Title]",
+    "description": "[post content]",
+    "authorId": {
+        "_id": "64f0c7d2e7a1f23abc654321",
+        "name": "John Doe",
+        "email": "john@example.com"
+    }
+    "createdAt": "[timestamp]",
+    "updatedAt": "[timestamp]"
+  }
+}
+\`\`\`
+
+#### Get All Resources
+\`\`\`http
+GET /api/[post]
+\`\`\`
+
+**Response (200):**
+\`\`\`json
+{
+  "posts": [
+    {
+        "_id": "[post._id]",
+        "title": "[post Title]",
+        "description": "[post content]",
+        "authorId": {
+            "_id": "64f0c7d2e7a1f23abc654321",
+            "name": "John Doe",
+            "email": "john@example.com"
+        }
+        "createdAt": "[timestamp]",
+        "updatedAt": "[timestamp]"
+    },{
+        ...
+    }
+  ]
+}
+\`\`\`
+
+#### Get Post by ID
+\`\`\`http
+GET /api/[post]/[post._id]
+Authorization: Bearer [jwt_token]
+\`\`\`
+
+**Response (200):**
+\`\`\`json
+{
+  "post": {
+    "_id": "[postId]",
+    "title": "[Post Title]",
+    "description": "[Post Content]",
+    "createdAt": "[timestamp]",
+    "updatedAt": "[timestamp]"
+  }
+}
+\`\`\`
+
+#### Update Post
+\`\`\`http
+PUT /api/[post]/[post_.id]
+Authorization: Bearer [jwt_token]
+Content-Type: application/json
+
+{
+  "title": "[Updated Title]",
+  "content": "[Updated content]"
+}
+\`\`\`
+
+**Response (200):**
+\`\`\`json
+{
+  "message": "Post updated successfully",
+  "data": {
+    "_id": "[post_id]",
+    "title": "[Updated Title]",
+    "content": "[Updated content]",
+    "updatedAt": "[timestamp]",
+    "createdAt": "[timestamp]",
+  }
+}
+\`\`\`
+
+#### Delete Post
+\`\`\`http
+DELETE /api/[post]/[post_id]
+Authorization: Bearer [jwt_token]
+\`\`\`
+
+**Response (200):**
+\`\`\`json
+{
+  "success": true,
+  "message": "Post deleted successfully"
+}
+\`\`\`
+
+---
+
+## API Testing
+
+### Using Postman
+
+1. **Import Collection:**
+   - Open Postman
+   - Click "Import" → Select `[postman_collection_file].json`
+   - Environment variables will be pre-configured
+
+2. **Set Environment Variables:**
+   - Create a new environment named "Blog Management App"
+   - Add variables:
+     - `base_url`: `http://localhost:5000/api`
+     - `token`: `[your_jwt_token]`
+     - `user_id`: `[your_user_id]`
+
+3. **Run Requests:**
+   - Use {{base_url}} and {{token}} in request URLs and headers
+
+
 
 
 
