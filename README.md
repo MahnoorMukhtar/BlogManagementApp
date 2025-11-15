@@ -80,7 +80,7 @@ Then open http://localhost:5173 in your browser.
 
 ### Project Structure
 
-\`\`\`
+```
 Frontend (React)
 │
 ├─ Components
@@ -115,7 +115,7 @@ Backend (Node.js + Express)
 
 Database
 └─ MongoDB (Stores users and posts)
-\`\`\`
+```
 
 ---
 
@@ -176,13 +176,13 @@ Content-Type: application/json
 
 #### Login User
 ```http
-    POST /api/auth/login
-    Content-Type: application/json
+POST /api/auth/login
+Content-Type: application/json
 
-    {
-    "email": "[user@example.com]",
-    "password": "[password123]"
-    }
+{
+"email": "[user@example.com]",
+"password": "[password123]"
+}
 ```
 
 **Response (200):**
@@ -200,8 +200,8 @@ Content-Type: application/json
 
 #### Get Current User
 ```http
-    GET /api/auth/me
-    Authorization: Bearer [jwt_token]
+GET /api/auth/me
+Authorization: Bearer [jwt_token]
 ```
 
 **Response (200):**
@@ -221,13 +221,13 @@ Content-Type: application/json
 
 #### Create a Post
 ```http
-    POST /api/[post]
-    Authorization: Bearer [jwt_token]
-    Content-Type: application/json
+POST /api/[post]
+Authorization: Bearer [jwt_token]
+Content-Type: application/json
 
-    {
-    "title": "[post Title]",
-    "content": "[post content]",
+{
+"title": "[post Title]",
+"content": "[post content]",
 }
 ```
 
@@ -252,7 +252,7 @@ Content-Type: application/json
 
 #### Get All Resources
 ```http
-    GET /api/[post]
+GET /api/[post]
 ```
 
 **Response (200):**
@@ -271,7 +271,7 @@ Content-Type: application/json
             "createdAt": "[timestamp]",
             "updatedAt": "[timestamp]"
         },{
-            ...
+            .
         }
     ]
     }
@@ -279,8 +279,8 @@ Content-Type: application/json
 
 #### Get Post by ID
 ```http
-    GET /api/[post]/[post._id]
-    Authorization: Bearer [jwt_token]
+GET /api/[post]/[post._id]
+Authorization: Bearer [jwt_token]
 ```
 
 **Response (200):**
@@ -298,9 +298,9 @@ Content-Type: application/json
 
 #### Update Post
 ```http
-    PUT /api/[post]/[post_.id]
-    Authorization: Bearer [jwt_token]
-    Content-Type: application/json
+PUT /api/[post]/[post_.id]
+Authorization: Bearer [jwt_token]
+Content-Type: application/json
 
     {
     "title": "[Updated Title]",
@@ -324,8 +324,8 @@ Content-Type: application/json
 
 #### Delete Post
 ```http
-    DELETE /api/[post]/[post_id]
-    Authorization: Bearer [jwt_token]
+DELETE /api/[post]/[post_id]
+Authorization: Bearer [jwt_token]
 ```
 
 **Response (200):**
