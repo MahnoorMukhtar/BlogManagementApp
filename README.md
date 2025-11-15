@@ -262,7 +262,7 @@ GET /api/posts/
 ```
 
 **Response (200):**
-```json
+```http
 {
     "posts": [
         {
@@ -277,7 +277,7 @@ GET /api/posts/
             "createdAt": "[timestamp]",
             "updatedAt": "[timestamp]"
         },
-        //...more posts
+        [...more posts]
     ]
 }
 ```
