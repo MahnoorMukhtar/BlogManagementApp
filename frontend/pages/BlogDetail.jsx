@@ -61,7 +61,7 @@ const BlogDetail = () => {
           </div>
 
           <div 
-            className="max-w-none text-gray leading-relaxed space-y-4 mb-8 prose prose-lg"
+            className="max-w-none text-gray leading-relaxed space-y-4 mb-8 prose"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
 
