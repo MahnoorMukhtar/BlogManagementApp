@@ -36,8 +36,10 @@ cd BlogManagementApp
 ### 2. Install dependencies
 
 ```bash
-cd backend && npm install
-cd frontend && npm install
+cd backend
+npm install
+cd frontend 
+npm install
 ```
 
 ### 3. Confgiure Env Variables
