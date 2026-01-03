@@ -1,5 +1,5 @@
 import { Link } from "react-router"
-import { useAuth } from "../context/authContextProvider"
+import { useAuth } from "../context/AuthContextProvider"
 import { useBlog } from "../context/BlogContextProvider"
 import React from "react"
 import Header from "../components/Header"

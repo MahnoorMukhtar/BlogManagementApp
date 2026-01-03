@@ -4,7 +4,7 @@ import ProtectedRoutes from "../components/ProtectedRoutes"
 import { Link, useNavigate, useParams } from "react-router"
 import TextEditor from "../components/TextEditor"
 import { useBlog } from "../context/BlogContextProvider"
-import { useAuth } from "../context/authContextProvider"
+import { useAuth } from "../context/AuthContextProvider"
 
 export default function EditBlog() {
     const [title, setTitle] = useState("")

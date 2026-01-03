@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { useAuth } from '../context/authContextProvider'
+import { useAuth } from '../context/AuthContextProvider'
 
 function Input({ type, placeholder, value, onChange }) {
   return (

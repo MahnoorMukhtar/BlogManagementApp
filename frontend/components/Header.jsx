@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { useAuth } from '../context/authContextProvider'
+import { useAuth } from '../context/AuthContextProvider'
 
 const Header = () => {
   const { user, logout } = useAuth()
