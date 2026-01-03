@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import BlogCard from '../components/blogCard'
+import BlogCard from '../components/BlogCard'
 import Header from '../components/Header'
 import { useBlog } from '../context/BlogContextProvider'
 
