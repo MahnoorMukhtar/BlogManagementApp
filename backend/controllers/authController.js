@@ -7,6 +7,14 @@ const generateToken = (userId) => {
     return jwt.sign({ user_id: userId }, process.env.JWT_SECRET, { expiresIn: '2d' })
 }
 
+
+const tokenOptions = {
+    httpOnly: true,
+    secure: true, // must be true in production (HTTPS)
+    sameSite: "None", // allows cross-site cookies
+    maxAge: 1000 * 60 * 60 * 24, // 1 day
+}
+
 const registerUser = async (req, res) => {
     try {
         const errors = validationResult(req);
@@ -32,11 +40,7 @@ const registerUser = async (req, res) => {
             _id: user._id
         }
 
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV == 'production',
-            sameSite: "lax",
-        });
+        res.cookie("token", token, tokenOptions);
         res.status(201).json({ succes: true, user:userCreated, token });
     } catch (error) {
         console.error("Error in registerUser:", error);
@@ -64,18 +68,14 @@ const loginUser = async (req, res) => {
             return res.status(401).json({ message: 'invalid email or password' })
         }
 
-          const userCreated = {
+        const userCreated = {
             name: user.name,
             email: user.email,
             _id: user._id
         }
 
         const token = generateToken(user._id)
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV == 'production',
-            sameSite: "lax",
-        });
+        res.cookie("token", token, tokenOptions);
         res.status(200).json({ success: true, user: userCreated, token })
     } catch (error) {
         console.error("Error in login in user:", error);

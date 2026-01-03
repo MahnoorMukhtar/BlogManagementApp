@@ -24,7 +24,6 @@ app.use(
   })
 );
 
-
 const PORT = process.env.PORT
 
 //connect to db
